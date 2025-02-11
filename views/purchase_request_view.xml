@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_purchase_request_form" model="ir.ui.view">
+            <field name="name">purchase.request.form</field>
+            <field name="model">purchase.purchase</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Requests">
+                    <header>
+
+                        <button name="action_department_approval" string="Submit" type="object" class="oe_highlight"
+                                invisible="state != 'draft'"/>
+
+                        <button name="action_hr_approval" string="Approve" type="object" class="oe_highlight"
+                                invisible="state != 'department_approval'"/>
+
+                        <button name="action_approved" string="Approve" type="object" class="oe_highlight"
+                                invisible="state != 'hr_approval'"/>
+
+                        <button name="action_create_request_for_quotation" string="Create Request For Quotation"
+                                type="object" class="oe_highlight"
+                                invisible="state != 'approved'"/>
+
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div name="button_box" class="oe_button_box">
+                            <button name="action_request_smart_button"
+                                    class="oe_stat_button"
+                                    icon="fa-external-link"
+                                    type="object">
+                                <div class="o_stat_info">
+                                    <span class="o_stat_text">Request for Quotation</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <label for="reference"/>
+                                <field name="reference" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="employee_id"/>
+                                <field name="company_id"/>
+                                <field name="date"/>
+                            </group>
+                            <group>
+                                <field name="manager_id"/>
+                                <field name="responsible_id"/>
+                                <field name="deadline"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Products">
+                                <field name="product_ids">
+                                    <tree editable="bottom">
+                                        <field name="product_id"/>
+                                        <field name="description"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Log">
+                                <group>
+                                    <group>
+                                        <field name="department_approval_by"/>
+                                        <field name="department_approval_on"/>
+                                    </group>
+                                    <group>
+                                        <field name="hr_approval_by"/>
+                                        <field name="hr_approval_on"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_purchase_request_tree" model="ir.ui.view">
+            <field name="name">purchase.request.tree</field>
+            <field name="model">purchase.purchase</field>
+            <field name="arch" type="xml">
+                <tree string="Purchase Requests">
+                    <field name="reference"/>
+                    <field name="employee_id"/>
+                    <field name="company_id"/>
+                    <field name="manager_id"/>
+                    <field name="responsible_id"/>
+                    <field name="deadline"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_purchase_request_view" model="ir.actions.act_window">
+            <field name="name">Purchase Requests</field>
+            <field name="res_model">purchase.purchase</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="purchase_request_menu"
+                  name="Purchase Requests"
+                  parent="purchase.menu_procurement_management"
+                  action="action_purchase_request_view"
+                  sequence="-1"/>
+
+    </data>
+</odoo>

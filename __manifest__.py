@@ -15,8 +15,14 @@
     'depends': ['base', 'mail', 'sale_management'],
     'data': [
         'security/ir.model.access.csv',
+        'security/security.xml',
         'data/sequence.xml',
         'views/installment_view.xml',
+        'views/sale_order.xml',
+        'views/purchase_request_view.xml',
+
+        'wizard/installment_payment_wizard.xml',
+        'wizard/purchase_quotation_wizard.xml',
 
     ],
     'demo': [],

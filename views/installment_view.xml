@@ -8,6 +8,7 @@
                 <form>
                     <header>
                         <button name="action_draft" string="Open" type="object" class="oe_highlight"/>
+                        <button name="action_installment_line" string="installment" type="object" class="oe_highlight"/>
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
@@ -22,21 +23,27 @@
                                 <field name="name"/>
                                 <field name="date"/>
                                 <field name="customer_id"/>
-                                <!--                                <field name="journal_id"/>-->
-                                <!--                                <field name="account_id"/>-->
+                                <field name="account_id"/>
                             </group>
                             <group>
                                 <field name="amount"/>
+                                <field name="months"/>
                                 <field name="notes"/>
                             </group>
                         </group>
                         <notebook>
                             <page string="Payments">
-                                <field name="payment_ids">
+
+                                <field name="payment_ids" readonly="1">
                                     <tree editable="bottom">
                                         <field name="date"/>
                                         <field name="amount"/>
+                                        <field name="amount_paid"/>
                                         <field name="state"/>
+                                        <button string="Paid in full" name="action_paid_in_full" type="object"
+                                                class="oe_highlight"/>
+                                        <button string="Partial payment" name="action_partial_payment" type="object"
+                                                class="oe_highlight"/>
                                     </tree>
                                 </field>
                             </page>
@@ -58,12 +65,12 @@
                 <tree sample="1">
                     <field name="reference"/>
                     <field name="name"/>
-                    <field name="state" optional="show"/>
+                    <field name="state" optional="hide"/>
                     <field name="date" optional="hide"/>
                     <field name="customer_id" optional="hide"/>
-                    <field name="journal_id"/>
-                    <field name="account_id"/>
-                    <field name="amount" optional="show"/>
+
+                    <field name="account_id" optional="hide"/>
+                    <field name="amount" optional="hide"/>
                     <field name="notes"/>
                 </tree>
             </field>
@@ -126,7 +133,6 @@
                 <pivot sample="1">
                     <field name="name" type="row"/>
                     <field name="customer_id" type="row"/>
-                    <field name="journal_id" type="row"/>
                     <field name="date" type="col"/>
                     <field name="amount" type="col"/>
                 </pivot>

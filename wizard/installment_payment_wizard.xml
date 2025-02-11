@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_installment_payment_wizard" model="ir.ui.view">
+            <field name="name">installment.payment.wizard.form</field>
+            <field name="model">installment.payment.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Partial Payment">
+                    <group>
+                        <field name="name"/>
+                        <field name="customer_id"/>
+                        <field name="amount"/>
+                        <field name="amount_paid"/>
+                    </group>
+                    <footer>
+                        <button string="Confirm" type="object" name="action_confirm_partial_payment"
+                                class="btn-primary"/>
+                        <button string="Cancel" special="cancel" class="btn-default"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_installment_payment_wizard" model="ir.actions.act_window">
+            <field name="name">Partial Payment Wizard</field>
+            <field name="res_model">installment.payment.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

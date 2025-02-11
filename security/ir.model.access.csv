@@ -2,4 +2,13 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
 access_installment_installment,access.installment.installment,model_installment_installment,,1,1,1,1
 access_installment_payment,access.installment.payment,model_installment_payment,,1,1,1,1
+access_installment_payment_wizard,access.installment_payment_wizard,model_installment_payment_wizard,,1,1,1,1
+
+access_purchase_purchase,access.purchase_purchase,model_purchase_purchase,,1,1,1,1
+access_purchase_product,access.purchase_product,model_purchase_product,,1,1,1,1
+access_purchase_quotation_wizard,access.purchase_quotation_wizard,model_purchase_quotation_wizard,,1,1,1,1
+access_purchase_quotation_product_wizard,access.purchase_quotation_product_wizard,model_purchase_quotation_product_wizard,,1,1,1,1
+
+
+
 

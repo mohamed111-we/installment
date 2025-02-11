@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="module_category_sale_custom" model="ir.module.category">
+            <field name="name">Installment</field>
+            <field name="sequence">60</field>
+        </record>
+
+        <record id="user_have_confirm" model="res.groups">
+            <field name="name">Users With Confirm</field>
+            <field name="category_id" ref="module_category_sale_custom"/>
+        </record>
+
+    </data>
+</odoo>
