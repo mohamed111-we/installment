@@ -12,7 +12,7 @@ class PurchaseRequest(models.Model):
     company_id = fields.Many2one('res.company', string='Company', required=True, readonly=False,
                                  default=lambda self: self.env.company)
     date = fields.Date(string="Date ", required=True)
-    manager_id = fields.Many2one('res.users', string="Manager")
+    manager_id = fields.Many2one('res.users', string=" Department Manager")
     responsible_id = fields.Many2one('res.users', string="Responsible")
     deadline = fields.Date(string="Deadline", required=True)
     state = fields.Selection([
@@ -25,7 +25,7 @@ class PurchaseRequest(models.Model):
     department_approval_on = fields.Datetime(string="Department Approval On")
     hr_approval_by = fields.Many2one('res.users', string="Hr Approval By")
     hr_approval_on = fields.Datetime(string="Hr Approval On")
-    product_ids = fields.One2many('purchase.product', 'purchase_request_id', string='Product')
+    product_ids = fields.One2many('purchase.product', 'purchase_id', string='Product')
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -63,7 +63,8 @@ class PurchaseRequest(models.Model):
             'res_model': 'purchase.order',
             'view_mode': 'tree,form',
             'target': 'current',
-            'context': {'default_purchase_request_id': self.id},
+            'context': {'default_purchase_id': self.id},
+            'domain': [('purchase_id', '=', self.id)],
         }
 
     def action_create_request_for_quotation(self):
@@ -93,4 +94,4 @@ class PurchaseProduct(models.Model):
     description = fields.Text(string='Description')
     quantity = fields.Float(string='Quantity', required=True, default=1.0)
     uom_id = fields.Many2one('uom.uom', string='UOM', required=True, )
-    purchase_request_id = fields.Many2one('purchase.purchase', string='Purchase Request', required=True)
+    purchase_id = fields.Many2one('purchase.purchase', string='Purchase Request', required=True)

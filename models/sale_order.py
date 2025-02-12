@@ -50,33 +50,6 @@ class SaleOrder(models.Model):
     #         'target': 'current',
     #     }
 
-    # def action_confirm(self):
-    #     super(SaleOrder, self).action_confirm()
-    #
-    #     # Create and post the invoice
-    #     invoice = self._create_invoices()
-    #     invoice.action_post()
-    #
-    #     # Register the payment
-    #     payment_register = (
-    #         self.env['account.payment.register']
-    #         .with_context(active_model='account.move', active_ids=invoice.ids)
-    #         .create({'payment_date': invoice.date})
-    #         ._create_payments()
-    #     )
-    #
-    #     # Return action to open the invoice
-    #     return {
-    #         'name': _('Customer Invoice'),
-    #         'view_mode': 'form',
-    #         'res_model': 'account.move',
-    #         'res_id': payment_register.id,
-    #         'type': 'ir.actions.act_window',
-    #         'target': 'current',
-    #     }
-
-
-
 # -----------------------------------------------------------------------------------------------------------------------
 # print(rec.env.user)                             # res.users(2,)
 # print(rec.env.user.name)                        # Mitchell Admin
@@ -93,3 +66,27 @@ class SaleOrder(models.Model):
 # self.env.user.company_id                                          ==>>    الشركة المرتبطة بالمستخدم
 # self.env.user.email                                               ==>>   ايميل المستخدم.
 # self.env.user.lang                                                ==>>   لغة المستخدم .
+
+# -----------------------------------------------------------------------------------------------------------------------
+# عند اختيار المستخدم تلقائي يتحدد الشركه الخاصه بيه وبناءا ع الشركه بتحدد العمله الخاصه بالشركه ويظهر شكل العمله قبل المبلغ
+# user_id = fields.Many2one('res.users')
+# company_id = fields.Many2one('res.company', string='Company',related='lawyer_id.company_id')
+# currency_id = fields.Many2one('res.currency', related='company_id.currency_id')
+# price = fields.Monetary(currency_field='currency_id')
+#                                               EX
+# user_id = Mitchell Admin
+# company_id = YourCompany
+# currency_id =  EGP
+# price =   LE 150
+# -----------------------------------------------------------------------------------------------------------------------
+# إنشاء فاتورة مرتبطة بأمر البيع
+# invoice = self._create_invoices()
+## تأكيد الفاتورة (نشرها)
+#invoice.action_post()
+#
+#     # تسجيل دفعة الدفع تلقائيًا
+#     payment_register = self.env['account.payment.register'].with_context(
+#         active_model='account.move', active_ids=invoice.ids
+#     ).create({
+#         'payment_date': invoice.date,
+#     })._create_payments()

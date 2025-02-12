@@ -24,6 +24,9 @@
         'wizard/installment_payment_wizard.xml',
         'wizard/purchase_quotation_wizard.xml',
 
+
+        'report/purchase_request_report.xml',
+
     ],
     'demo': [],
     'assets': {},

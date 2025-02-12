@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="action_report_purchase_request" model="ir.actions.report">
+            <field name="name">Purchase Request</field>
+            <field name="model">purchase.purchase</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">installment.purchase_request_template</field>
+            <field name="report_file">installment.purchase_request_template</field>
+            <field name="binding_model_id" ref="model_purchase_purchase"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="purchase_request_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+
+                            <h2 class="text-center" style="margin-bottom: 40px;">Purchase Request -
+                                <t t-esc="o.reference"/>
+                            </h2>
+
+                            <div class="row" style="font-size: 20px;">
+                                <div class="col-6">
+                                    <div>
+                                        <strong>Employee :</strong>
+                                        <t t-esc="o.employee_id.name"/>
+                                    </div>
+                                    <div>
+                                        <strong>Date :</strong>
+                                        <t t-esc="o.date"/>
+                                    </div>
+                                    <div>
+                                        <strong>Deadline :</strong>
+                                        <t t-esc="o.deadline"/>
+                                    </div>
+                                    <div>
+                                        <strong>Company :</strong>
+                                        <t t-esc="o.company_id.name"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-6" style="text-align: right; font-size: 20px;">
+                                    <div>
+                                        <strong>Department Manager :</strong>
+                                        <t t-esc="o.manager_id.name"/>
+                                    </div>
+                                    <div>
+                                        <strong>Responsible :</strong>
+                                        <t t-esc="o.responsible_id.name"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <table class="table table-bordered" style="margin-top: 40px;">
+                                <thead>
+                                    <tr>
+                                        <td>Product</td>
+                                        <td>Description</td>
+                                        <td>Quantity</td>
+                                        <td>UOM</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="o.product_ids" t-as="line">
+                                        <tr>
+                                            <td t-esc="line.product_id.name"/>
+                                            <td t-esc="line.description"/>
+                                            <td t-esc="line.quantity"/>
+                                            <td t-esc="line.uom_id.name"/>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                            <div style="margin-top: 40px;
+                                       text-align: right;
+                                       text-decoration: underline;
+                                       color: #875A7B;
+                                       font-size: 18px;
+                                       font-family:Verdana, Arial,sans-serif;">
+                                <strong>Mohamed Arafa</strong>
+                            </div>
+
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>
