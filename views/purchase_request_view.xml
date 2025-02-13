@@ -10,10 +10,12 @@
                     <header>
 
                         <button name="action_department_approval" string="Submit" type="object" class="oe_highlight"
-                                invisible="state != 'draft'"/>
+                                invisible="state != 'draft'"
+                                groups="installment.group_department_approval"/>
 
                         <button name="action_hr_approval" string="Approve" type="object" class="oe_highlight"
-                                invisible="state != 'department_approval'"/>
+                                invisible="state != 'department_approval'"
+                                groups="installment.group_hr_approval"/>
 
                         <button name="action_approved" string="Approve" type="object" class="oe_highlight"
                                 invisible="state != 'hr_approval'"/>
@@ -93,6 +95,7 @@
                     <field name="manager_id"/>
                     <field name="responsible_id"/>
                     <field name="deadline"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>
@@ -109,7 +112,7 @@
                   name="Purchase Requests"
                   parent="purchase.menu_procurement_management"
                   action="action_purchase_request_view"
-                  sequence="-1"/>
+                  sequence="-2"/>
 
     </data>
 </odoo>

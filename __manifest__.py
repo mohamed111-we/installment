@@ -20,6 +20,7 @@
         'views/installment_view.xml',
         'views/sale_order.xml',
         'views/purchase_request_view.xml',
+        'views/approval_request_view.xml',
 
         'wizard/installment_payment_wizard.xml',
         'wizard/purchase_quotation_wizard.xml',

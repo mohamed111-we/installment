@@ -59,9 +59,9 @@ class SaleOrder(models.Model):
 # print(rec.env.user.email)                       # admin@yourcompany.example.com
 # print(rec.env.user.lang )                       # en_US
 
-# self.env.user                                     ==>>   سجل المستخدم الحالي
+# self.env.user                                                     ==>>   سجل المستخدم الحالي
 # self.env.user.name                                                ==>>   اسم المستخدم.
-# self.env.user.id = self.env.user.id                               ==>>      ID المستخدم.
+# self.env.user.id = self.env.uid                                   ==>>      ID المستخدم.
 # self.env.user.login                                               ==>>  اسم تسجيل الدخول للمستخدم.
 # self.env.user.company_id                                          ==>>    الشركة المرتبطة بالمستخدم
 # self.env.user.email                                               ==>>   ايميل المستخدم.
@@ -90,3 +90,4 @@ class SaleOrder(models.Model):
 #     ).create({
 #         'payment_date': invoice.date,
 #     })._create_payments()
+# -----------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="action_approval_request_view" model="ir.actions.act_window">
+            <field name="name">Approval Requests</field>
+            <field name="res_model">purchase.purchase</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state', '=', 'approved')]</field>
+            <field name="context">{}</field>
+        </record>
+
+
+        <menuitem id="approval_request_menu"
+                  name="Approval Requests"
+                  parent="purchase.menu_procurement_management"
+                  action="action_approval_request_view"
+                  sequence="-1"/>
+
+    </data>
+</odoo>

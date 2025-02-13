@@ -27,6 +27,7 @@ class PurchaseRequest(models.Model):
     hr_approval_on = fields.Datetime(string="Hr Approval On")
     product_ids = fields.One2many('purchase.product', 'purchase_id', string='Product')
 
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
@@ -84,7 +85,6 @@ class PurchaseRequest(models.Model):
                 }) for rec in self.product_ids]
             },
         }
-
 
 class PurchaseProduct(models.Model):
     _name = 'purchase.product'
